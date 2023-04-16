@@ -52,15 +52,8 @@ const templateInfoType = (name) =>{
     }
 }
 
-const getAllPokemons = async () => {
-    // const apiPokeLote1 = await axios("https://pokeapi.co/api/v2/pokemon");
-    // const Urllote2 = apiPokeLote1.data.next
-    // const apiPokeLote2 = await axios(Urllote2);
-    // const Urllote3 = apiPokeLote2.data.next
-    // const apiPokeLote3 = await axios(Urllote3);
-    // const allPoke = apiPokeLote1.data.results.concat(apiPokeLote2.data.results).concat(apiPokeLote3.data.results)
-    
-    const infodb = await Pokemon.findAll({ 
+const getInfoDb = async () =>{
+    return await Pokemon.findAll({ 
         include : {
             model: Type,
             attributes:["name"],
@@ -68,9 +61,12 @@ const getAllPokemons = async () => {
                 attributes: [],
            } 
         }}); 
+}
+
+const getAllPokemons = async () => {
+    const infodb = await getInfoDb();
     const infoApi = await axios("https://pokeapi.co/api/v2/pokemon?limit=60");
-    const allPoke = infoApi.data.results;
-    const allPokeUrl = allPoke.map((poke)=>poke.url);
+    const allPokeUrl = infoApi.data.results.map((poke)=>poke.url);
     const data = await Promise.all(allPokeUrl.map( async (url) => {
         let info = await axios.get(url);
         return templateInfo(info);
@@ -80,18 +76,27 @@ const getAllPokemons = async () => {
 };
 
 const searchPokemonByName = async (name) =>{
-    const getDataAll = await getAllPokemons();
-    const pokeName = await getDataAll.filter((poke)=> poke.name == name);
+
+
+    const getDataAllDb = await getInfoDb();
+    const pokeName = await getDataAllDb.filter((poke)=> poke.name == name);
     if(pokeName.length) return pokeName;
-    else throw new Error("El nombre del pokemon no existe");
+    else {
+        const infoApi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        return templateInfo(infoApi);
+    }
+
 }
 
 const getPokemonById = async(id) => {
-    const getDataAll = await getAllPokemons();
-    const pokeId = await getDataAll.filter((poke)=> poke.id == id);
+    const getDataAllDb = await getInfoDb();
+    const pokeId = await getDataAllDb.filter((poke)=> poke.id == id);
 
     if(pokeId.length) return await pokeId;
-    else throw new Error("El id del pokemon no existe");
+    else {
+        const infoApi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+        return templateInfo(infoApi);
+    }
 };
 
 const postPokemon = async (name,image,hp,attack,defense,speed,height,weight,types) =>{

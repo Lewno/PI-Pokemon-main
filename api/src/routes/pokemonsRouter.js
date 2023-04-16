@@ -5,6 +5,8 @@ const {
     createPokemonHandler
 } = require("../handlers/pokemonsHandlers")
 
+const validate = require("../middlewares/validate");
+
 const pokemonsRouter = Router();
 
 
@@ -12,6 +14,6 @@ pokemonsRouter.get("/",getPokemonsHandler);
 
 pokemonsRouter.get("/:id",getPokemonIdHandler);
 
-pokemonsRouter.post("/",createPokemonHandler);
+pokemonsRouter.post("/",validate,createPokemonHandler);
 
 module.exports = pokemonsRouter;
