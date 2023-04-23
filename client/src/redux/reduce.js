@@ -6,7 +6,8 @@ import {
   FILTER_BY_TYPE,
   FILTER_BY_ORIGIN,
   POKEMON_BY_ORDER_NAME,
-  POKEMON_BY_ORDER_ATTACK
+  POKEMON_BY_ORDER_ATTACK,
+  CLEAN_DATA
  } from "./actions";
 
 const initialState = {
@@ -53,12 +54,12 @@ const rootReducer = (state = initialState,action) =>{
         const allPoke = state.allPokemons;  
         const createdFiltered = action.payload === "created" ? allPoke.filter((poke) => poke.createdInBd) : allPoke.filter((poke) => !poke.createdInBd);
       
-      return{
+        return{
         ...state,
           pokemons : action.payload === "all" ? allPoke : createdFiltered
-      }
+        }
       case POKEMON_BY_ORDER_NAME:
-      const sorted = action.payload === "asc" ?
+        const sorted = action.payload === "asc" ?
         state.pokemons.sort((a,b)=>{
           if(a.name>b.name) return 1;
           if(a.name<b.name) return -1;
@@ -74,16 +75,23 @@ const rootReducer = (state = initialState,action) =>{
         pokemons : sorted
       }
     case POKEMON_BY_ORDER_ATTACK: 
-    const sortedAttack = action.payload === "max-atq" ?
+      const sortedAttack = action.payload === "max-atq" ?
         state.pokemons.sort((a,b)=>b.attack - a.attack) : 
         state.pokemons.sort((a,b)=>a.attack - b.attack)
       return{
         ...state,
         pokemons : sortedAttack
       } 
-      default:
+    case CLEAN_DATA:
+        return{
+            ...state,
+            pokemons:[]
+        }
+    default:
         return {...state};
     }
+    
+    
   };
   
 

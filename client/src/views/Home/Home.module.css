@@ -15,7 +15,8 @@
 }
 
 .container button:hover{
-    background-color: rgb(241, 208, 242);
+    background-color: aquamarine;
+    color:black;
 }
 
 .selects{
@@ -29,4 +30,8 @@
     border-radius: 1rem;
     width: 10rem;
     height: 2rem;
+}
+
+.selects select:hover{
+    background-color: aquamarine;
 }

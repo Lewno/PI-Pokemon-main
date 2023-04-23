@@ -67,6 +67,8 @@
 .typeContainer select{
     display: block;
     margin: auto;
+    background-color: aquamarine;
+    padding: 0.5rem 1rem;
 }
 .types{
     display: flex;
@@ -93,4 +95,17 @@
     font-size: 1.3rem;
     font-weight: bolder;
     margin: 0 0.5rem;
+}
+
+.buttonForm{
+    border: 1px solid #000;
+    border-radius: 0.4rem;
+    margin:1rem auto  0  auto;
+    padding: 0.7rem;
+    display: block;
+    cursor: pointer;
+    font-weight: bolder;
+}
+.buttonForm:hover{
+    background-color: aquamarine; 
 }

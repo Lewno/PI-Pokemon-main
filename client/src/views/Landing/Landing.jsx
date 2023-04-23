@@ -3,6 +3,7 @@ import style from "./Landing.module.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../../redux/actions";
+import { cleanData } from "../../redux/actions";
 
 const Landing = () =>{
 
@@ -15,19 +16,33 @@ const Landing = () =>{
 
     useEffect(() => {
         dispatch(getDetail(ramdom()));
+        return() =>{
+            dispatch(cleanData());
+        };    
       }, [dispatch]);
+
+    const handleButton = (event) =>{
+        event.preventDefault();
+        dispatch(getDetail(ramdom()));
+        console.log("hola")
+    }
 
 
     return (
         <div className={style.page}>
-            <div className={style.content}>
-                <h1>Pokemon</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis omnis quisquam fugit numquam odit earum cumque temporibus inventore, officiis voluptatem reprehenderit voluptatum aperiam adipisci incidunt id quidem voluptas, laboriosam autem.</p>
-                <Link to ="/home">
-                    <button>Ingresar</button>
-                </Link>
+            <div className={style.card}>
+                <div className={style.content}>
+                    <h1>Pokemon App</h1>
+                    <p>Aplicacion hecha por <a href="/">Lewno</a></p>
+                    <Link to ="/home">
+                        <button>Ingresar</button>
+                    </Link>
+                    <button onClick={handleButton}>Cambiar Pokemon</button>
+                </div>
+                <div className={style.poke}>
+                    <img className={style.image} src={pokemon[0]?.image} alt="" />
+                </div>
             </div>
-            <img className={style.image} src={pokemon[0]?.image} alt="" />
         </div>
     )
 }

@@ -3,8 +3,8 @@ const validate = (input,errorsInput) =>{
     const errors = { ...errorsInput }; 
     if(!input.name) 
         errors.name ="Por favor completa este campo";
-    else if(input.name.length<5 || input.name.length>15) 
-        errors.name ="Debe estar entre 5 a 15 caracteres";
+    else if(input.name.length<5 || input.name.length>30) 
+        errors.name ="Debe estar entre 5 a 30 caracteres";
     else {
         errors.name ="";
     }

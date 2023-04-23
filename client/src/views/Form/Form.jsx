@@ -99,7 +99,7 @@ const Form = () =>{
                     name="name" 
                     onChange={handleChange}
                     minLength="5" 
-                    maxLength="15" 
+                    maxLength="30" 
                     required
                     />
                     <span>{errors.name}</span>
@@ -202,7 +202,7 @@ const Form = () =>{
                     </div>
                 </div>
 
-                <button type="submit" disabled={!input.types.length}>Crear</button>
+                <button className={style.buttonForm} type="submit" disabled={!input.types.length}>Crear</button>
                 </form>
             </div>
         </div>

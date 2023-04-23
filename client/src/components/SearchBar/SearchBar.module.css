@@ -8,4 +8,10 @@
 
 .search button{
     padding: 0.4rem;
+    background-color: white;
+}
+
+.search button:hover{
+    background-color: black;
+    color:white;
 }

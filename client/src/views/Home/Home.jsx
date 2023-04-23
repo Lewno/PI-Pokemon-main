@@ -4,7 +4,8 @@ import { getPokemons, filterPokemonsByTypes, filterPokemonsByOrigin,PokemonsOrde
 import style from "./Home.module.css"
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import Paginated from "../../components/Paginated/Paginated";
-import NavBar from "../../components/NavBar/NavBar"
+import NavBar from "../../components/NavBar/NavBar";
+import { cleanData } from "../../redux/actions";
 
 const Home = () =>{
     const dispatch = useDispatch();
@@ -24,6 +25,9 @@ const Home = () =>{
 
     useEffect(()=>{
         dispatch(getPokemons());
+        return() =>{
+            dispatch(cleanData());
+        };
     },[dispatch]);  
     
     const handleClick = (event) =>{

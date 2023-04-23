@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getDetail } from "../../redux/actions";
+import { cleanData } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import style from "./Detail.module.css";
 import typeColor from "../../Help/help";
@@ -18,6 +19,9 @@ const Detail = () =>{
 
     useEffect(() => {
         dispatch(getDetail(id));
+        return() =>{
+          dispatch(cleanData());
+      };
       }, [dispatch]);
     return (    
         <div className={style.page}>

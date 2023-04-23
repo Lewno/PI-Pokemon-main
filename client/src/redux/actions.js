@@ -8,6 +8,8 @@ export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
 export const POKEMON_BY_ORDER_NAME = "POKEMON_BY_ORDER_NAME";
 export const POKEMON_BY_ORDER_ATTACK = "POKEMON_BY_ORDER_ATTACK";
+export const CLEAN_DATA = "CLEAN_DATA";
+
 
 
 export const getPokemons = () => {
@@ -98,3 +100,7 @@ export const PokemonsOrderAttack= (value) =>{
      type: POKEMON_BY_ORDER_ATTACK, payload: value 
   }
 };
+
+export const cleanData = () =>{
+  return{type:CLEAN_DATA};
+}
