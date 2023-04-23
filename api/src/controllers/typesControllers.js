@@ -7,7 +7,7 @@ const getAllTypes = async () =>{
         const infoApiTypes = await axios("https://pokeapi.co/api/v2/type");
         const allTypesName = infoApiTypes.data.results.map(type => type.name);
         allTypesName.forEach(async (name) => {
-           await Type.create({name:name})
+           await Type.create({name})
         });
         return allTypesName;
     }

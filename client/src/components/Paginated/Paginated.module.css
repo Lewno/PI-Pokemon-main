@@ -1,0 +1,17 @@
+.content{
+    display: flex;
+    width: 40%;
+    justify-content: space-evenly;
+    margin: 1rem auto;
+}
+
+.button{
+    padding: 0.5rem;
+    background-color: white;
+}
+
+.button:hover{
+    background-color: rgb(60, 23, 240);
+    color: white;
+    cursor: pointer;
+}

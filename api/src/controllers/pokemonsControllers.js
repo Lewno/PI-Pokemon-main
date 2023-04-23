@@ -63,7 +63,7 @@ const getInfoDb = async () =>{
         }}); 
 }
 
-const getAllPokemons = async () => {
+const getAllPokemons = async () => {    
     const infodb = await getInfoDb();
     const infoApi = await axios("https://pokeapi.co/api/v2/pokemon?limit=60");
     const allPokeUrl = infoApi.data.results.map((poke)=>poke.url);
@@ -76,14 +76,16 @@ const getAllPokemons = async () => {
 };
 
 const searchPokemonByName = async (name) =>{
-
-
     const getDataAllDb = await getInfoDb();
     const pokeName = await getDataAllDb.filter((poke)=> poke.name == name);
-    if(pokeName.length) return pokeName;
+    if(pokeName.length) return [...pokeName];
     else {
-        const infoApi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
-        return templateInfo(infoApi);
+        try {
+            const infoApi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+            return [templateInfo(infoApi)];
+        } catch (error) {
+            return `El nombre denominado "${name}" no pertenece al registro`;
+        }
     }
 
 }
@@ -91,11 +93,14 @@ const searchPokemonByName = async (name) =>{
 const getPokemonById = async(id) => {
     const getDataAllDb = await getInfoDb();
     const pokeId = await getDataAllDb.filter((poke)=> poke.id == id);
-
-    if(pokeId.length) return await pokeId;
+    if(pokeId.length) return [...pokeId];
     else {
-        const infoApi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-        return templateInfo(infoApi);
+        try {
+            const infoApi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+            return [templateInfo(infoApi)];
+        } catch (error) {
+            return `El id n° "${id}" no pertenece al registro`;
+        }
     }
 };
 

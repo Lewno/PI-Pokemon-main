@@ -1,0 +1,47 @@
+.card{
+    width: 20rem;
+    height:30rem ;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #000;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+.image{
+    align-self: flex-start;
+    width: 15rem;
+    max-height: 18rem;
+}
+
+.card a{
+    text-decoration: none;
+    color: #000;
+}
+.types{
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0 40px 0;
+}
+
+.types span{
+    padding: 0.5rem;
+    color: #000;
+    font-size: 1.3rem;
+    border-radius: 1rem;
+}
+
+
+
+.stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.stats p {
+    color: #404060;
+}
+
