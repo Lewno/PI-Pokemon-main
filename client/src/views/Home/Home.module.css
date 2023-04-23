@@ -1,3 +1,32 @@
+.page{
+    height: 100%;
+    width: 100%;    
+}
+
 .container{
     text-align: center;
+}
+
+.container button{
+    margin: 2rem 0;
+    border-radius: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.container button:hover{
+    background-color: rgb(241, 208, 242);
+}
+
+.selects{
+    display: flex;
+    width: 60%;
+    justify-content: space-evenly;
+    margin: 2rem auto;
+}
+
+.selects select{
+    border-radius: 1rem;
+    width: 10rem;
+    height: 2rem;
 }

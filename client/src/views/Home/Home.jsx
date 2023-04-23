@@ -4,6 +4,7 @@ import { getPokemons, filterPokemonsByTypes, filterPokemonsByOrigin,PokemonsOrde
 import style from "./Home.module.css"
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import Paginated from "../../components/Paginated/Paginated";
+import NavBar from "../../components/NavBar/NavBar"
 
 const Home = () =>{
     const dispatch = useDispatch();
@@ -51,9 +52,12 @@ const Home = () =>{
     }
 
     return (
-        <div className={style.container}>
+        
+        <div className={style.page}>
+            <NavBar/>
+            <div className={style.container}>
             <button onClick={handleClick}>Cargar todos los pokemones</button>
-            <div >
+            <div className={style.selects}>
                 <select value="order" onChange={handlerPokemonOrderName}>
                     <option value="order" disabled>Order by name</option>   
                     <option value="asc">Ascendente</option>
@@ -99,6 +103,7 @@ const Home = () =>{
             paginado = {paginado}
             />
             <CardsContainer currentPokemon={currentPokemon}/>
+        </div>
         </div>
     )
 }

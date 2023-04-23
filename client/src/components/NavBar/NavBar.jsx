@@ -5,9 +5,11 @@ import SearchBar from "../SearchBar/SearchBar";
 const NavBar = () =>{
     return (
         <div className={style.nav}>
-            <Link to="/home">Home</Link>
+            <Link to="/home">
+                <button className={style.icon}></button>
+            </Link>
             <SearchBar/>
-            <Link to="/create">Crear Pokemon</Link>
+            <Link to="/create"><p>Crear Pokemon</p></Link>
         </div>
     )
 }

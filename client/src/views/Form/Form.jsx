@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import { getTypes, postPokemon } from "../../redux/actions";
 import { Link, useNavigate } from "react-router-dom";
 import validate from "./validate";
+import style from "./Form.module.css";
+import typeColor from "../../Help/help";
 
 const Form = () =>{
     const dispatch = useDispatch();
@@ -29,7 +31,7 @@ const Form = () =>{
         "image":"",
         "attack": 0,
         "defense": 0,
-        "types":""
+        "types":[]
     });
     
     useEffect(()=>{
@@ -52,7 +54,16 @@ const Form = () =>{
             ...input,
             types:[...input.types, event.target.value]
         })
+
     }
+
+    const handleDelete = (type) =>{
+        setInput({
+            ...input,
+            types: input.types.filter((t)=> t!== type)
+        })
+    }
+    console.log(input)
 
     const handleSubmit = (event) =>{
         event.preventDefault();
@@ -71,18 +82,18 @@ const Form = () =>{
             })
             navigate("/home");
     }
-    console.log(errors);
-    console.log(input);
 
 
     return (
-        <div>
-            <Link to="/home"><button>Volver</button></Link>
-            <h1>Crea tu pokemon</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Nombre:</label>
+        <div className={style.page}>
+            <Link to="/home"><button className={style.back}></button></Link>
+            <div className={style.form}>
+                <h1>Crea tu pokemon</h1>
+                <form onSubmit={handleSubmit}>
+                <div className={style.containerLine}>
+                    <label className={style.labelLine}>Nombre:</label>
                     <input 
+                    className={style.inputLine} 
                     type="text" 
                     value={input.name} 
                     name="name" 
@@ -93,9 +104,10 @@ const Form = () =>{
                     />
                     <span>{errors.name}</span>
                 </div>
-                <div>
-                    <label>Imagen:</label>
+                <div className={style.containerLine}>
+                    <label className={style.labelLine}>Imagen:</label>
                     <input 
+                    className={style.inputLine} 
                     type="text" 
                     value={input.image} 
                     name="image" 
@@ -104,9 +116,10 @@ const Form = () =>{
                     />
                     <span>{errors.image}</span>
                 </div>
-                <div>
-                    <label>Vida:</label>
+                <div className={style.containerLine}>
+                    <label className={style.labelLine}>Vida:</label>
                     <input 
+                    className={style.inputLine} 
                     type="range" 
                     min="1" 
                     max="200"
@@ -116,9 +129,10 @@ const Form = () =>{
                     onChange={handleChange}/>
                     <span>{input.hp}</span>
                 </div>
-                <div>
-                    <label>Ataque:</label>
+                <div className={style.containerLine}>
+                    <label className={style.labelLine}>Ataque:</label>
                     <input 
+                    className={style.inputLine} 
                     type="range" 
                     min="0" 
                     max="200"
@@ -128,9 +142,10 @@ const Form = () =>{
                     onChange={handleChange}/>
                     <span>{input.attack}</span>
                 </div>
-                <div>
-                    <label>Defensa:</label>
+                <div className={style.containerLine}>
+                    <label className={style.labelLine}>Defensa:</label>
                     <input 
+                    className={style.inputLine} 
                     type="range" 
                     min="0" 
                     max="200"
@@ -140,43 +155,56 @@ const Form = () =>{
                     onChange={handleChange}/>
                     <span>{input.defense}</span>
                 </div>
-                <div>
-                    <label>Velocidad:</label>
+                <div className={style.containerLine}>
+                    <label className={style.labelLine}>Velocidad:</label>
                     <input 
+                    className={style.inputLine} 
                     type="range" 
+                    min="0" 
+                    max="200"
                     value={input.speed} 
                     name="speed" 
                     onChange={handleChange}/>
                     <span>{input.speed}</span>
                 </div>
-                <div>
-                    <label>Peso:</label>
+                <div className={style.containerLine}>
+                    <label className={style.labelLine}>Peso:</label>
                     <input 
+                    className={style.inputLine} 
                     type="number" 
                     value={input.weight} 
                     name="weight" 
                     onChange={handleChange}/>
-                    <span>{input.weight}</span>
                 </div>
-                <div>
-                    <label>Altura:</label>
+                <div className={style.containerLine}>
+                    <label className={style.labelLine}>Altura:</label>
                     <input 
+                    className={style.inputLine} 
                     type="number" 
                     value={input.height} 
                     name="height" 
                     onChange={handleChange}/>
-                     <span>{input.height}</span>
                 </div>
-                <select onChange={handleSelect} value="all">
-                    <option value="all" disabled>Types</option>
-                    {types?.map((type) => <option key={type.name} value={type.name}>{type.name}</option>)}
-                </select>
-                <span>{errors.types}</span>
+                <div className={style.typeContainer}>
+                    <select onChange={handleSelect} value="all">
+                        <option value="all" disabled>Types</option>
+                        {types?.map((type) => <option key={type.name} value={type.name}>{type.name}</option>)}
+                    </select>
+                    <span>{errors.types}</span>
 
-                <ul>{input.types.map((type)=> <li key={type}>{type}</li>)}</ul>
+                    <div>
+                        {input.types.map((type)=> 
+                            <div className={style.types} key={type}>
+                                <span style={{background:typeColor[type]}}>{type}</span>
+                                <button className={style.delete} onClick={()=>handleDelete(type)}>X</button>
+                            </div>
+                        )}
+                    </div>
+                </div>
 
                 <button type="submit" disabled={!input.types.length}>Crear</button>
-            </form>
+                </form>
+            </div>
         </div>
     )
 }

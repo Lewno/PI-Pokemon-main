@@ -1,7 +1,28 @@
 .nav{
     display: flex;
-    justify-content: space-evenly;
-    border: 1px solid #000;
+    justify-content: space-around;
+    border-bottom: 1px solid black;
+    padding: 1rem;
     border-radius: 1rem;
     font-size: 2rem;
+    align-items: center;
+}
+
+.nav a{
+    text-decoration: none;
+}
+
+.nav p {
+    font-size: 2rem;
+    color: black;
+    
+}
+
+
+.icon{
+    background: transparent;
+    border: transparent;
+    background-image: url("../../img/icon.png");
+    background-repeat: no-repeat;
+    padding: 2rem;
 }
