@@ -62,17 +62,17 @@ const Home = () =>{
             <div className={style.container}>
             <button onClick={handleClick}>Cargar todos los pokemones</button>
             <div className={style.selects}>
-                <select value="order" onChange={handlerPokemonOrderName}>
+                <select onChange={handlerPokemonOrderName}>
                     <option value="order" disabled>Order by name</option>   
                     <option value="asc">Ascendente</option>
                     <option value="desc">Descendente</option>
                 </select>
-                <select value="order" onChange={handlerPokemonOrderAttack}>
+                <select onChange={handlerPokemonOrderAttack}>
                     <option value="order" disabled>Order by attack</option>   
                     <option value="max-atq">max-atq</option>
                     <option value="min-atq">min-atq</option>
                 </select>
-                <select value="filter" onChange={handlerFilterTypes}>
+                <select  onChange={handlerFilterTypes}>
                     <option value="all">Todos</option>
                     <option value="normal">normal</option>
                     <option value="fighting">fighting</option>
@@ -94,13 +94,14 @@ const Home = () =>{
                     <option value="unknown">unknown</option>
                     <option value="shadow">shadow</option>
                 </select>
-                <select value="filter" onChange={handlerFilterOrigin}>
+                <select onChange={handlerFilterOrigin}>
                     <option value="all">Todos</option>
                     <option value="created">Creados</option>
                     <option value="api">existentes</option>
 
                 </select>
             </div>
+            <p className={style.currentPage}>{currentPage}</p>
             <Paginated 
             pokemonsPerPage = {pokemonsPerPage} 
             allPokemons={allPokemons.length} 

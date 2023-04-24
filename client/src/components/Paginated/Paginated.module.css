@@ -6,13 +6,11 @@
 }
 
 .button{
-    padding: 0.5rem;
     background-color: white;
-    border-radius: 0.5rem;
 }
 
 .button:hover{
-    background-color: rgb(60, 23, 240);
     color: white;
     cursor: pointer;
 }
+

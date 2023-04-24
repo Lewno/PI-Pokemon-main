@@ -18,6 +18,9 @@
     background-color: aquamarine;
     color:black;
 }
+.container button:active::before{
+    background-color: red;
+}
 
 .selects{
     display: flex;
@@ -34,4 +37,9 @@
 
 .selects select:hover{
     background-color: aquamarine;
+}
+
+.currentPage{
+    font-size: 2rem;
+    text-decoration: underline;
 }

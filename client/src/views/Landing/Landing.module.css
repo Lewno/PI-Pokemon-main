@@ -1,9 +1,14 @@
 .page{
+    background-image: url("https://images4.alphacoders.com/864/864574.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 .card{
     width: 90rem;
@@ -12,7 +17,9 @@
     align-items: center;
     justify-content: space-evenly;
     margin: auto;
-    border: 1px solid #000;
+    border: 0.3rem solid #fff;
+    border-radius: 1rem;
+    backdrop-filter: blur(0.3rem);
 }
 
 .content{
@@ -22,6 +29,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    color: aliceblue;
 }
 
 .content h1{
@@ -46,42 +54,3 @@
 .image{
 width: 100%;
 }
-
-
-
-/* .page:hover .image{
-    left: 75%;
-    bottom: 10%;
-    height: 100%;
-}
-
-.page .content{
-    position: relative;
-    width: 50%;
-    left: 20%;
-    padding: 20px 20px 20px 40px;
-    color: #FFF;
-    opacity: 0;
-    transition: all .5s;
-}
-
-.page:hover .content{
-    left: 0;
-    opacity: 1;
-}
-
-.page .content h1{
-    text-transform: uppercase;
-    font-size: 2.2em;
-    line-height: 1em;
-}
-
-.page .content button{
-    position: relative;
-    color: #000;
-    background: #FFF;
-    display: inline-block;
-    padding: 10px 20px;
-    margin-top: 10px;
-    font-weight: 700;
-} */

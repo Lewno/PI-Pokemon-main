@@ -61,13 +61,13 @@ const rootReducer = (state = initialState,action) =>{
       case POKEMON_BY_ORDER_NAME:
         const sorted = action.payload === "asc" ?
         state.pokemons.sort((a,b)=>{
-          if(a.name>b.name) return 1;
-          if(a.name<b.name) return -1;
+          if(a.name.toLowerCase()>b.name.toLowerCase()) return 1;
+          if(a.name.toLowerCase()<b.name.toLowerCase()) return -1;
           return 0;
         }) : 
         state.pokemons.sort((a,b)=>{
-          if(a.name>b.name) return -1;
-          if(a.name<b.name) return 1;
+          if(a.name.toLowerCase()>b.name.toLowerCase()) return -1;
+          if(a.name.toLowerCase()<b.name.toLowerCase()) return 1;
           return 0;
         })
       return{
