@@ -4,8 +4,9 @@ import typeColor from "../../Help/help";
 
 const Card = ({id,name,image,types,hp,attack,defense}) =>{
     const color = typeColor[types[0]]
+    const second = typeColor[types[1]];
     return (
-        <div className={style.card} style={{background:`radial-gradient(circle at 50% 0%, ${color} 36%, #ffffff 36%)`}}>
+        <div className={style.card} style={{background:`radial-gradient(circle at 50% 0%, ${color} 35%, #ffffff 36%) `}}>
             <img className={style.image} src={image} alt="" />
             <Link to={`/detail/${id}`}>
              <h2 className={style.name}>{name}</h2>

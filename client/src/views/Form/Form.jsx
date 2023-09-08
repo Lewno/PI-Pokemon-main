@@ -50,10 +50,15 @@ const Form = () =>{
     }
 
     const handleSelect = (event) =>{
-        setInput({
-            ...input,
-            types:[...input.types, event.target.value]
-        })
+        if(!input.types.find((element)=> element === event.target.value)){
+            if(input.types.length <2){
+                setInput({
+                    ...input,
+                    types:[...input.types, event.target.value]
+                })
+            }
+        }
+        
 
     }
 
@@ -63,7 +68,7 @@ const Form = () =>{
             types: input.types.filter((t)=> t!== type)
         })
     }
-    console.log(input)
+
 
     const handleSubmit = (event) =>{
         event.preventDefault();
@@ -83,6 +88,10 @@ const Form = () =>{
             navigate("/home");
     }
 
+
+    const disabledTrue = () => {
+        return !input.types.length || !input.name || !input.image;
+    }
 
     return (
         <div className={style.page}>
@@ -202,7 +211,7 @@ const Form = () =>{
                     </div>
                 </div>
 
-                <button className={style.buttonForm} type="submit" disabled={!input.types.length}>Crear</button>
+                <button className={style.buttonForm} type="submit" disabled={disabledTrue()}>Crear</button>
                 </form>
             </div>
         </div>

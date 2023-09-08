@@ -11,13 +11,14 @@ const Home = () =>{
     const dispatch = useDispatch();
 
     const allPokemons = useSelector(state => state.pokemons)
+    console.log(allPokemons)
     const [order,setOrder] = useState("");
-    const [currentPage,setCurrentPage] = useState(1);
-    const [pokemonsPerPage,setPokemonPerPage] = useState(12);
+    const [currentPage,setCurrentPage] = useState(1); 
+    const [pokemonsPerPage,setPokemonPerPage] = useState(12); 
     const indexOfLastPokemon = currentPage * pokemonsPerPage;
     const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
 
-    const currentPokemon = allPokemons.slice(indexOfFirstPokemon,indexOfLastPokemon);
+    const currentPokemon =  allPokemons?.slice(indexOfFirstPokemon,indexOfLastPokemon);
 
     const paginado = (pageNumber) =>{
         setCurrentPage(pageNumber);

@@ -15,7 +15,7 @@ const Landing = () =>{
      }
 
     useEffect(() => {
-        dispatch(getDetail(ramdom()));
+        dispatch(getDetail(151));
         return() =>{
             dispatch(cleanData());
         };    
@@ -24,7 +24,6 @@ const Landing = () =>{
     const handleButton = (event) =>{
         event.preventDefault();
         dispatch(getDetail(ramdom()));
-        console.log("hola")
     }
 
 

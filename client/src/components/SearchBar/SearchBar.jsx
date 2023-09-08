@@ -9,7 +9,6 @@ const SearchBar = () =>{
 
     const handleInputChange = (event) =>{
         setName(event.target.value);
-        console.log(name);
     }
 
     const handleSumbit = (event) =>{
@@ -21,7 +20,6 @@ const SearchBar = () =>{
         <div className={style.search}>
             <input type="text" placeholder="Buscar Pokemon..." onChange={handleInputChange}/>
             <button type="submit" onClick={handleSumbit}>Buscar</button>
-
         </div>
     )
 

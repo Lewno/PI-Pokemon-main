@@ -37,8 +37,8 @@ const templateInfo = (info) =>{
         height: info.data.height || null,
         weight:info.data.weight || null,
         createdInBd:false,
-        types: info.data.types.map((type) => 
-        { 
+        types: info.data.types.map((type) =>
+        {
             let name = type.type.name;
             return templateInfoType(name)
         }
@@ -46,24 +46,24 @@ const templateInfo = (info) =>{
     }
 }
 
-const templateInfoType = (name) =>{ 
+const templateInfoType = (name) =>{
     return{
         name :name
     }
 }
 
 const getInfoDb = async () =>{
-    return await Pokemon.findAll({ 
+    return await Pokemon.findAll({
         include : {
             model: Type,
             attributes:["name"],
             through:{
                 attributes: [],
-           } 
-        }}); 
+           }
+        }});
 }
 
-const getAllPokemons = async () => {    
+const getAllPokemons = async () => {
     const infodb = await getInfoDb();
     const infoApi = await axios("https://pokeapi.co/api/v2/pokemon?limit=60");
     const allPokeUrl = infoApi.data.results.map((poke)=>poke.url);
@@ -71,7 +71,6 @@ const getAllPokemons = async () => {
         let info = await axios.get(url);
         return templateInfo(info);
     }))
-
     return [...infodb,...data];
 };
 
@@ -80,14 +79,9 @@ const searchPokemonByName = async (name) =>{
     const pokeName = await getDataAllDb.filter((poke)=> poke.name == name);
     if(pokeName.length) return [...pokeName];
     else {
-        try {
-            const infoApi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
-            return [templateInfo(infoApi)];
-        } catch (error) {
-            return `El nombre denominado "${name}" no pertenece al registro`;
-        }
+        const infoApi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);       
+        return [templateInfo(infoApi)];
     }
-
 }
 
 const getPokemonById = async(id) => {
@@ -115,13 +109,13 @@ const postPokemon = async (name,image,hp,attack,defense,speed,height,weight,type
     });
     // se agrega los tipos
     await pokeCreate.addTypes(typedb);
-    const newPoke = await Pokemon.findByPk(pokeCreate.id,{ 
+    const newPoke = await Pokemon.findByPk(pokeCreate.id,{
             include : {
                 model: Type,
                 attributes:["name"],
                 through:{
                     attributes: [],
-               } 
+               }
             }});
     return newPoke;
 

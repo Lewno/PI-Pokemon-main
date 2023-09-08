@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_POKEMONS_BY_NAME = "GET_POKEMONS_BY_NAME";
@@ -31,7 +32,10 @@ export const getPokemonsByName = (name) => {
         const response = await axios.get(`${URL_BASE}/pokemons?name=${name}`);
         dispatch({ type: GET_POKEMONS_BY_NAME, payload: response.data });
       } catch (error) {
-        alert(error.message);
+        Swal.fire({
+          icon: 'error',
+          title: 'No se pudo encomtrar ese pokemon',
+        })
       }
     };
 };

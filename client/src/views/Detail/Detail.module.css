@@ -20,6 +20,7 @@
 
 .container{
     display: flex;
+    justify-content: space-between;
     margin: auto;
     height: 90%;
 }
@@ -29,7 +30,10 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    width: 50%;
+    width: 40%;
+    border: 1px solid #000;
+    border-radius: 1rem;
+    height: 90%;
 }
 
 .card h1{
@@ -54,6 +58,7 @@
     font-size: 2rem;
     border-radius: 1rem;
     margin: 0 1rem;
+    border: 1px solid #000;
 }
 
 .stats{

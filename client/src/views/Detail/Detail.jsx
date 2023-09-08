@@ -17,8 +17,11 @@ const Detail = () =>{
   const defensa = `${pokemon[0]?.defense/2}%`;
   const velocidad = `${pokemon[0]?.speed/2}%`;
 
+  const color = typeColor[pokemon[0]?.types[0].name];
+
     useEffect(() => {
         dispatch(getDetail(id));
+
         return() =>{
           dispatch(cleanData());
       };
@@ -29,7 +32,7 @@ const Detail = () =>{
                 <button></button>
               </Link>
           <div className={style.container}>
-              <div className={style.card}>
+              <div className={style.card} style={{background:`radial-gradient(circle 65rem at 50% 0%, ${color} 35%, #ffffff) `}}>
                 <h1>{pokemon[0]?.name}</h1>
                 <img className={style.image} src={pokemon[0]?.image} alt={pokemon[0]?.id} />
                 <div className={style.types}>
