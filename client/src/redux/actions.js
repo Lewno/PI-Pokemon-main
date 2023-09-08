@@ -11,7 +11,7 @@ export const POKEMON_BY_ORDER_NAME = "POKEMON_BY_ORDER_NAME";
 export const POKEMON_BY_ORDER_ATTACK = "POKEMON_BY_ORDER_ATTACK";
 export const CLEAN_DATA = "CLEAN_DATA";
 
-const URL_BASE = "https://pi-pokemon-main-production-6680.up.railway.app/";
+const URL_BASE = "https://pi-pokemon-main-production-6680.up.railway.app";
 
 
 export const getPokemons = () => {
