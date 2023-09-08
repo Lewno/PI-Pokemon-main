@@ -11,12 +11,12 @@ export const POKEMON_BY_ORDER_NAME = "POKEMON_BY_ORDER_NAME";
 export const POKEMON_BY_ORDER_ATTACK = "POKEMON_BY_ORDER_ATTACK";
 export const CLEAN_DATA = "CLEAN_DATA";
 
+const URL_BASE = "https://pi-pokemon-main-production-6680.up.railway.app/";
 
 
 export const getPokemons = () => {
     return async function (dispatch) {
       try {
-        const URL_BASE = "http://localhost:3001";
         const response = await axios.get(`${URL_BASE}/pokemons`);
         dispatch({ type: GET_POKEMONS, payload: response.data });
       } catch (error) {
@@ -28,7 +28,7 @@ export const getPokemons = () => {
 export const getPokemonsByName = (name) => {
     return async function (dispatch) {
       try {
-        const URL_BASE = "http://localhost:3001";
+        
         const response = await axios.get(`${URL_BASE}/pokemons?name=${name}`);
         dispatch({ type: GET_POKEMONS_BY_NAME, payload: response.data });
       } catch (error) {
@@ -43,7 +43,6 @@ export const getPokemonsByName = (name) => {
 export const getDetail = (id) => {
   return async function (dispatch) {
     try {
-      const URL_BASE = "http://localhost:3001";
       const response = await axios.get(`${URL_BASE}/pokemons/${id}`);
       dispatch({ type: GET_POKEMONS_BY_ID, payload: response.data });
     } catch (error) {
@@ -55,7 +54,6 @@ export const getDetail = (id) => {
 export const getTypes=()=>{
   return async function (dispatch) {
     try {
-      const URL_BASE = "http://localhost:3001";
       const response = await axios.get(`${URL_BASE}/types`);
       dispatch({ type: GET_TYPES, payload: response.data });
     } catch (error) {
@@ -67,7 +65,6 @@ export const getTypes=()=>{
 export const postPokemon = (pokemon) =>{
   return async function (dispatch){
     try {
-      const URL_BASE = "http://localhost:3001";
       const response = await axios.post(`${URL_BASE}/pokemons/`,pokemon);
       console.log(response);
       return response;
